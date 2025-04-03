@@ -50,13 +50,11 @@ class SimidSurvey extends BaseSimidCreative {
 
     console.log('選択された回答:', selected);
 
-    // 「ありがとうございました」メッセージ表示
     const thanks = document.getElementById('thanks-cover');
     if (thanks) {
       thanks.classList.add('showing');
     }
 
-    // SIMIDに停止メッセージ送信（オプション）
     this.protocol.sendMessage({
       type: 'creativeStopped'
     });
