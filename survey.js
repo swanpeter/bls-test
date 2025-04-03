@@ -57,10 +57,7 @@ class SimidSurvey extends BaseSimidCreative {
   /**
    * Shows the current question
    */
-
-
   showQuestion() {
-    console.log('📣 showQuestion() called');
     // If isMultiple and the “answer” button is pressed, 
     // a "thanks-cover" is displayed and the player is returned after the specified number of seconds.
     if (this.isAnswered) {
@@ -159,12 +156,10 @@ class SimidSurvey extends BaseSimidCreative {
 
   /** @override */
   onStart(eventData) {
-  super.onStart(eventData);
-  this.surveyQuestions_ = JSON.parse(this.creativeData.adParameters);
-  console.log('📊 adParameters:', this.surveyQuestions_); // ←追加
-  this.showNextQuestion();
-}
-
+    super.onStart(eventData);
+    this.surveyQuestions_ = JSON.parse(this.creativeData.adParameters);
+    this.showNextQuestion();
+  }
 
   /**
    * Shows the next question.
