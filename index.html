@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- index.html の <head> 内の metaタグの下に追加 -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <title>フジドラWINTERアンケート</title>
   <style>
     body {
@@ -19,37 +17,44 @@
       top: 10%;
       left: 10%;
       right: 10%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       padding: 20px;
       border-radius: 10px;
-      display: none;
     }
     label {
       display: block;
       margin: 8px 0;
     }
+    .thanks-cover {
+      display: none;
+      color: #0f0;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .thanks-cover.showing {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <div class="overlay" id="overlay">
-    <h2>「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？</h2>
+    <div id="current-question"></div>
     <form id="quizForm">
-      <label><input type="checkbox" name="q" value="告知"> 地上波やSNS上の告知</label>
-      <label><input type="checkbox" name="q" value="TVer表示"> TVer内の表示</label>
-      <label><input type="checkbox" name="q" value="知らない"> フジドラWINTERを知らない</label>
-      <label><input type="checkbox" name="q" value="口コミ"> 知人やSNSなどの情報や口コミ</label>
-      <button type="submit">回答する</button>
+      <div id="right-button-container"></div>
+      <button id="answer-button" type="submit">回答する</button>
     </form>
+    <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
   </div>
-<!-- SIMID Core & Survey Logic -->
-<script src="base_simid_creative.js"></script>
-<script src="simid_protocol.js"></script>
-<script src="survey.js"></script>
 
-<script>
-  window.onload = () => {
-    const simidCreative = new SimidSurvey();
-  };
-</script>
+  <!-- SIMID Core & Survey Logic -->
+  <script src="base_simid_creative.js"></script>
+  <script src="simid_protocol.js"></script>
+  <script src="survey.js"></script>
+
+  <script>
+    window.onload = () => {
+      const simidCreative = new SimidSurvey();
+    };
+  </script>
 </body>
 </html>
