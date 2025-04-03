@@ -5,73 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>フジドラWINTERアンケート</title>
   <style>
-    body {
-      margin: 0;
-      background-color: black;
-      color: white;
-      font-family: sans-serif;
+    * {
+      box-sizing: border-box;
     }
-    .main-container {
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      font-family: sans-serif;
+      color: white;
+    }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
     }
-    .survey-question {
-      font-size: 24px;
-      margin-bottom: 20px;
+    .overlay h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
-    .survey-checkbox-label {
+    #quizForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #fff;
+      color: #000;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+    }
+    #quizForm label {
       display: flex;
       align-items: center;
-      font-size: 18px;
-      cursor: pointer;
-      padding: 10px;
-      background-color: #fff;
-      color: #000;
-      margin-bottom: 10px;
-      border-radius: 5px;
+      gap: 0.5rem;
     }
-    .survey-checkbox {
-      margin-right: 10px;
-      width: 20px;
-      height: 20px;
-    }
-    .answer-button {
-      margin-top: 20px;
-      padding: 10px 30px;
-      font-size: 18px;
+    #quizForm button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
     }
-    .thanks-cover {
-      display: none;
-      font-size: 20px;
-      color: limegreen;
-      margin-top: 20px;
-    }
-    .thanks-cover.showing {
-      display: block;
+    #quizForm button:hover {
+      background: #555;
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <div id="current-question" class="survey-question"></div>
-    <div id="right-button-container"></div>
-    <button id="answer-button" class="answer-button">回答する</button>
-    <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
+  <div class="container">
+    <video src="https://tango-bls-stg.s3.amazonaws.com/black_base_30s.mp4" autoplay muted playsinline></video>
+    <div class="overlay">
+      <h2>「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？</h2>
+      <form id="quizForm">
+        <label><input type="checkbox" name="q" value="告知"> 地上波やSNS上の告知</label>
+        <label><input type="checkbox" name="q" value="TVer表示"> TVer内の表示</label>
+        <label><input type="checkbox" name="q" value="知らない"> フジドラWINTERを知らない</label>
+        <label><input type="checkbox" name="q" value="口コミ"> 知人やSNSなどの情報や口コミ</label>
+        <button type="submit">回答する</button>
+      </form>
+    </div>
   </div>
-
   <script src="simid_protocol.js"></script>
   <script src="base_simid_creative.js"></script>
   <script src="survey.js"></script>
   <script>
-    window.onload = function() {
-      const survey = new SimidSurvey();
-      survey.ready();
-    };
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const answers = Array.from(document.querySelectorAll('input[name="q"]:checked')).map(el => el.value);
+      console.log("選択された項目:", answers);
+      alert("ご回答ありがとうございました！");
+    });
   </script>
 </body>
 </html>
