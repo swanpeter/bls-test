@@ -84,14 +84,19 @@
     }
   </style>
 
+  <!-- SIMID scripts -->
   <script src="simid_protocol.js"></script>
   <script src="base_simid_creative.js"></script>
   <script src="survey.js"></script>
 </head>
 <body>
   <div class="main-container">
-    <div id="current-question" class="question"></div> <!-- ← 修正 -->
-    <div class="answers" id="right-button-container"></div>
+    <div id="current-question" class="question"></div>
+
+    <!-- 両方のコンテナを用意 -->
+    <div id="top-button-container" class="answers"></div>
+    <div id="right-button-container" class="answers"></div>
+
     <button id="answer-button">回答する</button>
     <div id="thanks">ご回答ありがとうございました！</div>
   </div>
