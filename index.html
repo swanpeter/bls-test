@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フジドラWINTERアンケート</title>
+  <style>
+    /* スタイルはここに続く（前のコード全部） */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <video src="https://tango-bls-stg.s3.amazonaws.com/black_base_30s.mp4" autoplay muted playsinline></video>
+    <div class="overlay">
+      <h2>「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？</h2>
+      <form id="quizForm">
+        <label><input type="checkbox" name="q" value="告知"> 地上波やSNS上の告知</label>
+        <label><input type="checkbox" name="q" value="TVer表示"> TVer内の表示</label>
+        <label><input type="checkbox" name="q" value="知らない"> フジドラWINTERを知らない</label>
+        <label><input type="checkbox" name="q" value="口コミ"> 知人やSNSなどの情報や口コミ</label>
+        <button type="submit">回答する</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const answers = Array.from(document.querySelectorAll('input[name="q"]:checked')).map(el => el.value);
+      console.log("選択された項目:", answers);
+      alert("ご回答ありがとうございました！");
+    });
+  </script>
+</body>
+</html>
