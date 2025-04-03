@@ -156,10 +156,12 @@ class SimidSurvey extends BaseSimidCreative {
 
   /** @override */
   onStart(eventData) {
-    super.onStart(eventData);
-    this.surveyQuestions_ = JSON.parse(this.creativeData.adParameters);
-    this.showNextQuestion();
-  }
+  super.onStart(eventData);
+  this.surveyQuestions_ = JSON.parse(this.creativeData.adParameters);
+  console.log('📊 adParameters:', this.surveyQuestions_); // ←追加
+  this.showNextQuestion();
+}
+
 
   /**
    * Shows the next question.
