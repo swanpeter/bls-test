@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VAST version="3.0">
+<VAST version="4.0">
   <Ad id="fujidora01">
     <InLine>
       <AdSystem>FujidoraSurvey</AdSystem>
       <AdTitle>フジドラWINTER アンケート広告</AdTitle>
       <Creatives>
         <Creative>
+          <UniversalAdId idRegistry="unknown">123456</UniversalAdId>
           <Linear>
             <Duration>00:00:30</Duration>
             <MediaFiles>
@@ -13,11 +14,13 @@
                 https://tango-bls-stg.s3.amazonaws.com/black_base_30s.mp4
               </MediaFile>
             </MediaFiles>
-            <VideoClicks>
-              <ClickThrough>
-                <![CDATA[https://swanpeter.github.io/bls-test/]]>
-              </ClickThrough>
-            </VideoClicks>
+            <InteractiveCreativeFile>
+              <MIMEType>application/x-simid</MIMEType>
+              <APIFramework>SIMID</APIFramework>
+              <CreativeURL>
+                <![CDATA[https://swanpeter.github.io/bls-test/index.html]]>
+              </CreativeURL>
+            </InteractiveCreativeFile>
           </Linear>
         </Creative>
       </Creatives>
