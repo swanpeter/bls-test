@@ -87,15 +87,16 @@
     <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
   </div>
 
-  <script src="base_simid_creative.js"></script>
-  <script src="simid_protocol.js"></script>
-  <script src="survey.js"></script>
+<script src="simid_protocol.js"></script>
+<script src="base_simid_creative.js"></script>
+<script src="survey.js"></script>
 
-  <script>
-    window.onload = () => {
-      const simidCreative = new SimidSurvey();
-      simidCreative.ready();
-    };
-  </script>
+<script>
+  window.onload = function() {
+    const survey = new SimidSurvey();
+    survey.ready();
+  };
+</script>
+
 </body>
 </html>
