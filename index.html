@@ -38,10 +38,15 @@
       <button type="submit">回答する</button>
     </form>
   </div>
+<!-- SIMID Core & Survey Logic -->
+<script src="base_simid_creative.js"></script>
+<script src="simid_protocol.js"></script>
+<script src="survey.js"></script>
 
-  <!-- 🔽 順番が重要！ -->
-  <script src="simid_protocol.js"></script>
-  <script src="base_simid_creative.js"></script>
-  <script src="survey.js"></script>
+<script>
+  window.onload = () => {
+    const simidCreative = new SimidSurvey();
+  };
+</script>
 </body>
 </html>
