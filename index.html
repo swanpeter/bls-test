@@ -2,105 +2,99 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <title>フジドラWINTER アンケート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>フジドラWINTERアンケート</title>
   <style>
     body {
-      margin: 0;
       background-color: black;
       color: white;
-      font-family: 'Meiryo UI', sans-serif;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    .main-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      padding: 2vw;
+    .overlay {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    .question {
-      font-size: 2vw;
-      font-weight: bold;
-      margin-bottom: 2vw;
-      text-align: center;
-    }
-
-    .answers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1vw;
-      justify-content: center;
-      margin-bottom: 2vw;
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
     }
 
     label {
-      display: flex;
-      align-items: center;
-      background-color: #fff;
-      color: black;
-      padding: 0.8vw 1.2vw;
-      border-radius: 0.5vw;
-      font-size: 1.2vw;
-      cursor: pointer;
-      border: 2px solid #ccc;
-      transition: all 0.2s;
-    }
-
-    label:hover {
-      background-color: #ff006a;
-      color: white;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1em;
     }
 
     input[type="checkbox"] {
-      width: 1.2vw;
-      height: 1.2vw;
-      margin-right: 0.8vw;
+      margin-right: 10px;
     }
 
-    #answer-button {
-      font-size: 1.5vw;
-      padding: 1vw 2vw;
-      border-radius: 0.5vw;
-      border: none;
-      background-color: #fff;
-      color: black;
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.1em;
       cursor: pointer;
-      font-weight: bold;
     }
 
-    #answer-button:hover {
-      background-color: #ff006a;
-      color: white;
-    }
-
-    #thanks {
-      margin-top: 2vw;
-      font-size: 1.2vw;
-      color: limegreen;
+    .thanks-cover {
       display: none;
+      color: limegreen;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    .thanks-cover.showing {
+      display: block;
     }
   </style>
+</head>
+<body>
+  <div class="overlay" id="overlay">
+    <h2>「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？</h2>
+    <form id="quizForm">
+      <label><input type="checkbox" name="q" value="地上波での告知"> 地上波での告知</label>
+      <label><input type="checkbox" name="q" value="TVerでの告知・お勧め"> TVerでの告知・お勧め</label>
+      <label><input type="checkbox" name="q" value="ネット・SNSの口コミ"> ネット・SNSの口コミ</label>
+      <label><input type="checkbox" name="q" value="家族・友人の勧め"> 家族・友人の勧め</label>
+      <button type="submit">回答する</button>
+    </form>
+    <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
+  </div>
 
+  <!-- SIMID関連のスクリプト -->
   <script src="simid_protocol.js"></script>
   <script src="base_simid_creative.js"></script>
   <script src="survey.js"></script>
-</head>
-<body>
-  <div class="main-container">
-    <div id="current-question" class="question">質問を読み込み中...</div>
-    <div class="answers" id="right-button-container"></div>
-    <button id="answer-button">回答する</button>
-    <div id="thanks">ご回答ありがとうございました！</div>
-  </div>
-
   <script>
-    window.onload = () => {
-      const survey = new SimidSurvey();
-      survey.ready();
-    };
+    const simidCreative = new SimidSurvey();
+    simidCreative.ready();
+
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const answers = Array.from(document.querySelectorAll('input[name="q"]:checked')).map(el => el.value);
+      console.log("選択された項目:", answers);
+
+      const thanks = document.getElementById('thanks-cover');
+      if (thanks) {
+        thanks.classList.add('showing');
+      }
+
+      // SIMID終了通知
+      if (simidCreative && simidCreative.protocol) {
+        simidCreative.protocol.sendMessage({
+          type: 'creativeStopped'
+        });
+      }
+    });
   </script>
 </body>
 </html>
