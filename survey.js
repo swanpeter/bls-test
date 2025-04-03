@@ -1,4 +1,3 @@
-
 class SimidSurvey extends BaseSimidCreative {
   constructor() {
     super();
@@ -14,23 +13,35 @@ class SimidSurvey extends BaseSimidCreative {
       '知人やSNSなどの情報や口コミ'
     ];
 
-    document.getElementById('current-question').innerText = questionText;
+    // 質問文の表示
+    const questionEl = document.getElementById('current-question');
+    if (questionEl) {
+      questionEl.innerText = questionText;
+    }
 
+    // 選択肢の生成
     const container = document.getElementById('right-button-container');
-    answers.forEach((text, index) => {
-      const div = document.createElement('div');
-      div.className = `survey-checkbox-label B${index}`;
-      div.innerHTML = `
-        <input type="checkbox" class="survey-checkbox" id="chk${index}" name="q" value="${text}">
-        <span class="checkmark"></span>
-        <span class="survey-text">${text}</span>
-      `;
-      container.appendChild(div);
-    });
+    if (container) {
+      answers.forEach((text, index) => {
+        const div = document.createElement('div');
+        div.className = `survey-checkbox-label B${index}`;
+        div.innerHTML = `
+          <label>
+            <input type="checkbox" class="survey-checkbox" id="chk${index}" name="q" value="${text}">
+            <span class="checkmark"></span>
+            <span class="survey-text">${text}</span>
+          </label>
+        `;
+        container.appendChild(div);
+      });
+    }
 
+    // 回答ボタン
     const answerButton = document.getElementById('answer-button');
-    answerButton.innerText = '回答する';
-    answerButton.onclick = () => this.submitSurvey();
+    if (answerButton) {
+      answerButton.innerText = '回答する';
+      answerButton.onclick = () => this.submitSurvey();
+    }
   }
 
   submitSurvey() {
@@ -39,11 +50,13 @@ class SimidSurvey extends BaseSimidCreative {
 
     console.log('選択された回答:', selected);
 
-    // ありがとうございました画面表示
+    // 「ありがとうございました」メッセージ表示
     const thanks = document.getElementById('thanks-cover');
-    thanks.classList.add('showing');
+    if (thanks) {
+      thanks.classList.add('showing');
+    }
 
-    // SIMIDに完了通知（任意）
+    // SIMIDに停止メッセージ送信（オプション）
     this.protocol.sendMessage({
       type: 'creativeStopped'
     });
