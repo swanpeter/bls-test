@@ -10,6 +10,28 @@
         <Creative sequence="1">
           <Linear>
             <Duration>00:00:30</Duration>
+            <AdParameters>
+              <![CDATA[
+                [{
+                  "question": "「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？",
+                  "answers": [
+                    "地上波やSNS上の告知",
+                    "TVer内の表示",
+                    "フジドラWINTERを知らない",
+                    "知人やSNSなどの情報や口コミ"
+                  ],
+                  "answer_button_name": "回答する",
+                  "cover_img": "https://swanpeter.github.io/bls-test/images/cover.png",
+                  "thumbnail_img": "https://swanpeter.github.io/bls-test/images/thumb.png",
+                  "cid": 1111,
+                  "aid": 2222,
+                  "suid": "3333",
+                  "ptag": "test",
+                  "origin_liid": "9999",
+                  "random_flg": "1"
+                }]
+              ]]>
+            </AdParameters>
             <MediaFiles>
               <MediaFile delivery="progressive"
                          apiFramework="SIMID"
