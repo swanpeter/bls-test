@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
   <title>フジドラWINTERアンケート</title>
   <style>
     body {
@@ -12,65 +11,45 @@
       color: white;
       font-family: sans-serif;
     }
+    .main-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .survey-question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
     .survey-checkbox-label {
       display: flex;
       align-items: center;
-      font-size: 2.4vw;
-      font-family: 'Meiryo UI', sans-serif;
-      font-weight: bold;
-      line-height: 1vw;
+      font-size: 18px;
       cursor: pointer;
-      border: 2px solid #3b3b3b;
-      border-radius: 0.3vw;
-      padding: 0.9vw;
+      padding: 10px;
       background-color: #fff;
-      position: relative;
-      transition: background-color 0.2s, color 0.2s;
-      margin-bottom: 1vw;
+      color: #000;
+      margin-bottom: 10px;
+      border-radius: 5px;
     }
     .survey-checkbox {
-      display: none;
-    }
-    .checkmark {
-      width: 2vw;
-      height: 2vw;
-      border: 2px solid #3b3b3b;
-      border-radius: 0.4vw;
-      display: inline-block;
-      margin-right: 1vw;
-      position: relative;
-    }
-    .survey-checkbox:checked + .checkmark {
-      background-color:#ff006a;
-      border-color: black;
-    }
-    .survey-checkbox:checked + .checkmark::after {
-      content: '\2714';
-      font-size: 1.2vw;
-      color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
     }
     .answer-button {
-      width: 30%;
-      color: #000000;
-      font-size: 2vw;
-      font-family: 'Meiryo UI', sans-serif;
-      font-weight: bold;
-      text-align: center;
-      line-height: 5.4vw;
+      margin-top: 20px;
+      padding: 10px 30px;
+      font-size: 18px;
       cursor: pointer;
-      border: 2px solid #3b3b3b;
-      border-radius: 0.3vw;
-      margin-top: 2vw;
     }
     .thanks-cover {
       display: none;
-      color: #0f0;
-      font-weight: bold;
-      margin-top: 2vw;
+      font-size: 20px;
+      color: limegreen;
+      margin-top: 20px;
     }
     .thanks-cover.showing {
       display: block;
@@ -78,25 +57,21 @@
   </style>
 </head>
 <body>
-  <div class="overlay" id="overlay">
+  <div class="main-container">
     <div id="current-question" class="survey-question"></div>
-    <form id="quizForm">
-      <div id="right-button-container"></div>
-      <button id="answer-button" type="button" class="answer-button">回答する</button>
-    </form>
+    <div id="right-button-container"></div>
+    <button id="answer-button" class="answer-button">回答する</button>
     <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
   </div>
 
-<script src="simid_protocol.js"></script>
-<script src="base_simid_creative.js"></script>
-<script src="survey.js"></script>
-
-<script>
-  window.onload = function() {
-    const survey = new SimidSurvey();
-    survey.ready();
-  };
-</script>
-
+  <script src="simid_protocol.js"></script>
+  <script src="base_simid_creative.js"></script>
+  <script src="survey.js"></script>
+  <script>
+    window.onload = function() {
+      const survey = new SimidSurvey();
+      survey.ready();
+    };
+  </script>
 </body>
 </html>
