@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VAST version="4.0">
+<VAST xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns="http://www.iab.com/VAST"
+      version="4.2">
   <Ad id="fujidora01">
     <InLine>
-      <AdSystem>FujidoraSurvey</AdSystem>
+      <AdSystem>GDFP</AdSystem>
       <AdTitle>フジドラWINTER アンケート広告</AdTitle>
       <Creatives>
-        <Creative>
-          <UniversalAdId idRegistry="unknown">123456</UniversalAdId>
+        <Creative sequence="1">
           <Linear>
             <Duration>00:00:30</Duration>
             <MediaFiles>
-              <MediaFile delivery="progressive" type="video/mp4" width="1280" height="720">
+              <MediaFile delivery="progressive"
+                         apiFramework="SIMID"
+                         type="video/mp4"
+                         width="1280"
+                         height="720">
                 https://tango-bls-stg.s3.amazonaws.com/black_base_30s.mp4
               </MediaFile>
-            </MediaFiles>
-            <InteractiveCreativeFile>
-              <MIMEType>application/x-simid</MIMEType>
-              <APIFramework>SIMID</APIFramework>
-              <CreativeURL>
+              <InteractiveCreativeFile type="text/html"
+                                       apiFramework="SIMID"
+                                       variableDuration="true">
                 <![CDATA[https://swanpeter.github.io/bls-test/index.html]]>
-              </CreativeURL>
-            </InteractiveCreativeFile>
+              </InteractiveCreativeFile>
+            </MediaFiles>
           </Linear>
         </Creative>
       </Creatives>
