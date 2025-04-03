@@ -3,46 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <title>フジドラWINTER アンケート</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background-color: black;
       color: white;
       font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    .survey-question {
+
+    .overlay {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
       font-size: 1.5em;
-      margin: 20px;
+      margin-bottom: 20px;
     }
-    .survey-checkbox-label {
-      margin: 10px;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1em;
     }
-    .answer-button {
-      margin: 20px;
-      font-size: 1.2em;
+
+    input[type="checkbox"] {
+      margin-right: 10px;
     }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
     .thanks-cover {
       display: none;
-      color: lime;
+      color: limegreen;
       font-size: 1.2em;
-      margin: 20px;
+      margin-top: 20px;
     }
+
     .thanks-cover.showing {
       display: block;
     }
   </style>
 </head>
 <body>
-  <div id="current-question" class="survey-question"></div>
-  <div id="right-button-container"></div>
-  <button id="answer-button" class="answer-button">回答する</button>
-  <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
+  <div class="overlay" id="overlay">
+    <h2>「フジドラWINTER」キャンペーンを知ったきっかけは何ですか？</h2>
+    <form id="quizForm">
+      <label><input type="checkbox" name="q" value="地上波での告知"> 地上波での告知</label>
+      <label><input type="checkbox" name="q" value="TVerでの告知・お勧め"> TVerでの告知・お勧め</label>
+      <label><input type="checkbox" name="q" value="ネット・SNSの口コミ"> ネット・SNSの口コミ</label>
+      <label><input type="checkbox" name="q" value="家族・友人の勧め"> 家族・友人の勧め</label>
+      <button type="submit">回答する</button>
+    </form>
+    <div id="thanks-cover" class="thanks-cover">ご回答ありがとうございました！</div>
+  </div>
 
+  <!-- SIMID関連のスクリプト -->
   <script src="simid_protocol.js"></script>
   <script src="base_simid_creative.js"></script>
   <script src="survey.js"></script>
   <script>
-    const survey = new SimidSurvey();
-    survey.ready();
+    const simidCreative = new SimidSurvey();
+    simidCreative.ready();
+
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const answers = Array.from(document.querySelectorAll('input[name="q"]:checked')).map(el => el.value);
+      console.log("選択された項目:", answers);
+
+      const thanks = document.getElementById('thanks-cover');
+      if (thanks) {
+        thanks.classList.add('showing');
+      }
+
+      // SIMID終了通知
+      if (simidCreative && simidCreative.protocol) {
+        simidCreative.protocol.sendMessage({
+          type: 'creativeStopped'
+        });
+      }
+    });
   </script>
 </body>
 </html>
