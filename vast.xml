@@ -23,6 +23,12 @@
                   "answer_button_name": "回答する",
                   "cover_img": "https://swanpeter.github.io/bls-test/images/cover.png",
                   "thumbnail_img": "https://swanpeter.github.io/bls-test/images/thumb.png",
+                  "answer_images": [
+                    "https://swanpeter.github.io/bls-test/images/a1.jpg",
+                    "https://swanpeter.github.io/bls-test/images/a2.jpg",
+                    "https://swanpeter.github.io/bls-test/images/a3.jpg",
+                    "https://swanpeter.github.io/bls-test/images/a4.jpg"
+                  ],
                   "cid": 1111,
                   "aid": 2222,
                   "suid": "3333",
