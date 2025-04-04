@@ -24,10 +24,10 @@
                   "cover_img": "https://swanpeter.github.io/bls-test/images/cover.png",
                   "thumbnail_img": "https://swanpeter.github.io/bls-test/images/thumb.png",
                   "answer_images": [
-                    "https://swanpeter.github.io/bls-test/images/a1.jpg",
-                    "https://swanpeter.github.io/bls-test/images/a2.jpg",
-                    "https://swanpeter.github.io/bls-test/images/a3.jpg",
-                    "https://swanpeter.github.io/bls-test/images/a4.jpg"
+                    "https://swanpeter.github.io/bls-test/images/a1.png",
+                    "https://swanpeter.github.io/bls-test/images/a2.png",
+                    "https://swanpeter.github.io/bls-test/images/a3.png",
+                    "https://swanpeter.github.io/bls-test/images/a4.png"
                   ],
                   "cid": 1111,
                   "aid": 2222,
